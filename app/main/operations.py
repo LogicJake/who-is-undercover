@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-09 15:47:02
-# @Last Modified time: 2019-03-12 21:29:53
+# @Last Modified time: 2019-03-12 21:31:37
 from app import db
 import time
 from app.models.room import Room
@@ -169,7 +169,7 @@ def wrap_update_message(room_id, bad_num, num, bad_word, good_word, bad_number):
     bad_people = [n + '号' for n in bad_number]
     bad_people = '，'.join(bad_people)
 
-    message = '换词成功！您是法官，请让参与游戏的玩家对我回复【/enter {}】更新自己的词语。\n房  号：{}\n配  置：{}个卧底，{}个平民\n卧底词：{}\n平民词：{}\n卧  底：{}\n\n回复【/change】，换一组词；回复【/change 平民词 卧底词】，自己出题。（一局结束后，不必重新建房，回复【/change】直接换词。半小时内无操作的房间将被删除）'.\
+    message = '换词成功！您是法官，请让参与游戏的玩家对我回复【/enter {}】更新自己的词语。\n\n房  号：{}\n配  置：{}个卧底，{}个平民\n卧底词：{}\n平民词：{}\n卧  底：{}\n\n回复【/change】，换一组词；回复【/change 平民词 卧底词】，自己出题。（一局结束后，不必重新建房，回复【/change】直接换词。半小时内无操作的房间将被删除）'.\
         format(room_id, room_id, bad_num, num -
                bad_num, bad_word, good_word, bad_people)
     return message
@@ -179,7 +179,7 @@ def wrap_new_message(room_id, bad_num, num, bad_word, good_word, bad_number):
     bad_people = [n + '号' for n in bad_number]
     bad_people = '，'.join(bad_people)
 
-    message = '建房成功！您是法官，请让参与游戏的玩家对我回复【/enter {}】进入房间。\n房  号：{}\n配  置：{}个卧底，{}个平民\n卧底词：{}\n平民词：{}\n卧  底：{}\n\n回复【/change】，换一组词；回复【/change 平民词 卧底词】，自己出题。（一局结束后，不必重新建房，回复【/change】直接换词。半小时内无操作的房间将被删除）'.\
+    message = '建房成功！您是法官，请让参与游戏的玩家对我回复【/enter {}】进入房间。\n\n房  号：{}\n配  置：{}个卧底，{}个平民\n卧底词：{}\n平民词：{}\n卧  底：{}\n\n回复【/change】，换一组词；回复【/change 平民词 卧底词】，自己出题。（一局结束后，不必重新建房，回复【/change】直接换词。半小时内无操作的房间将被删除）'.\
         format(room_id, room_id, bad_num, num -
                bad_num, bad_word, good_word, bad_people)
     return message
