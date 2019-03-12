@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/LogicJake/who-is-undercover.svg?branch=master)](https://travis-ci.org/LogicJake/who-is-undercover)  
 [点我开始游戏](https://t.me/shuishiwodi_bot)，点一下晚一年，装备不花一分钱
 
 # 谁是卧底游戏助手
