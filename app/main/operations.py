@@ -153,7 +153,7 @@ def update_room(uid, good_word=None, bad_word=None):
     str_bad_number = ','.join(bad_number)
 
     now = int(time.time())
-    exist_room.update = str(now)
+    exist_room.update = now
     exist_room.good_word = good_word
     exist_room.bad_word = bad_word
     exist_room.bad_number = str_bad_number

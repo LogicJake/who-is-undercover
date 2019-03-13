@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-12 13:32:00
-# @Last Modified time: 2019-03-12 17:18:12
+# @Last Modified time: 2019-03-13 11:18:20
 from .. import db
 import time
 
@@ -13,11 +13,11 @@ class Member(db.Model):
         'room.room_id', ondelete="CASCADE"))
     index = db.Column(db.Integer)
     uid = db.Column(db.Integer)
-    enter_time = db.Column(db.String)
+    enter_time = db.Column(db.Integer)
 
     def __init__(self, room_id, uid):
         self.room_id = room_id
         self.uid = uid
 
         now = int(time.time())
-        self.enter_time = str(now)
+        self.enter_time = now
