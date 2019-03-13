@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-09 15:47:02
-# @Last Modified time: 2019-03-12 21:31:37
-from app import db
+# @Last Modified time: 2019-03-13 12:17:36
+from app import db, scheduler
 import time
 from app.models.room import Room
 from app.models.member import Member
 import os
 from random import choice, sample
 from app.main.message import send_message
+import time
 
 
 def init_room(num, uid, user_name, good_word=None, bad_word=None):
@@ -163,6 +164,25 @@ def update_room(uid, good_word=None, bad_word=None):
     message = wrap_update_message(room_id, bad_num, num,
                                   bad_word, good_word, bad_number)
     send_message(uid, message)
+
+
+@scheduler.task('interval', id='delete_room', seconds=30 * 60)
+def delete_room():
+    with scheduler.app.app_context():
+        rooms = Room.query.all()
+        rooms = sorted(rooms, key=lambda x: x.update)
+
+        outdate = int(time.time()) - 30 * 60
+        for room in rooms:
+            if room.update <= outdate:
+                members = Member.query.filter_by(room_id=room.room_id).all()
+                for member in members:
+                    db.session.delete(member)
+                    db.session.commit()
+                db.session.delete(room)
+                db.session.commit()
+            else:
+                break
 
 
 def wrap_update_message(room_id, bad_num, num, bad_word, good_word, bad_number):
