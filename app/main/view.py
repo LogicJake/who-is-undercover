@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-02-15 20:04:12
-# @Last Modified time: 2019-03-13 12:47:26
+# @Last Modified time: 2019-03-13 12:52:27
 from flask import Blueprint, request
 from app.main.operations import init_room, enter_room, update_room
 from app.main.message import send_message
@@ -67,7 +67,7 @@ def parse_enter(message):
         room_id = int(room_id)
     except ValueError:
         send_message(uid, '命令格式错误，房间号只能为数字')
-
+        return
     enter_room(room_id, uid)
 
 
