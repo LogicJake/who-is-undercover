@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-09 15:47:02
-# @Last Modified time: 2019-03-13 12:17:36
+# @Last Modified time: 2019-03-13 12:31:11
 from app import db, scheduler
 import time
 from app.models.room import Room
@@ -9,7 +9,6 @@ from app.models.member import Member
 import os
 from random import choice, sample
 from app.main.message import send_message
-import time
 
 
 def init_room(num, uid, user_name, good_word=None, bad_word=None):

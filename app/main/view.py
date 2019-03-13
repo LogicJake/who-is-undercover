@@ -1,10 +1,8 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-02-15 20:04:12
-# @Last Modified time: 2019-03-12 17:02:00
+# @Last Modified time: 2019-03-13 12:31:25
 from flask import Blueprint, request
-from app import db
-from app.models.room import Room
 from app.main.operations import init_room, enter_room, update_room
 from app.main.message import send_message
 
