@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-02-15 20:04:12
-# @Last Modified time: 2019-03-13 12:31:25
+# @Last Modified time: 2019-03-13 12:36:30
 from flask import Blueprint, request
 from app.main.operations import init_room, enter_room, update_room
 from app.main.message import send_message
@@ -12,7 +12,9 @@ bp = Blueprint('main', __name__)
 @bp.route('/message', methods=['POST'])
 def message():
     data = request.get_json()
-    parse_message(data['message'])
+
+    if 'message' in data.keys():
+        parse_message(data['message'])
     return 'ok'
 
 
