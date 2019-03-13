@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-02-15 19:33:23
-# @Last Modified time: 2019-03-13 11:13:33
+# @Last Modified time: 2019-03-13 17:06:37
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
-from flask_apscheduler import APScheduler
 
 db = SQLAlchemy()
-scheduler = APScheduler()
 
 
 def create_app(config_name):
@@ -21,8 +19,5 @@ def create_app(config_name):
     db.init_app(app)
     with app.test_request_context():
         db.create_all()
-
-    scheduler.init_app(app)
-    scheduler.start()
 
     return app
