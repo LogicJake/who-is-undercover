@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-12 21:43:53
-# @Last Modified time: 2019-03-12 21:52:03
+# @Last Modified time: 2019-03-13 10:47:43
 import unittest
 import chardet
 import os
@@ -20,6 +20,13 @@ class TestWord(unittest.TestCase):
         with open(os.path.join(basedir, '..', 'words.txt'), 'r') as f:
             lines = f.readlines()
             self.assertEqual(len(lines), len(set(lines)))
+
+    def test_split(self):
+        with open(os.path.join(basedir, '..', 'words.txt'), 'r') as f:
+            lines = f.readlines()
+            for line in lines:
+                ss = line.split(' ')
+                self.assertEqual(2, len(ss))
 
 
 if __name__ == '__main__':
