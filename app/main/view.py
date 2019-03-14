@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-02-15 20:04:12
-# @Last Modified time: 2019-03-13 12:52:27
+# @Last Modified time: 2019-03-14 20:07:20
 from flask import Blueprint, request
 from app.main.operations import init_room, enter_room, update_room
 from app.main.message import send_message
@@ -90,13 +90,38 @@ def parse_new(message):
         return
 
     if len(ss) > 2:
-        if len(ss) != 4:
-            send_message(uid, '命令格式错误，如果需要自定义词语，请输入两个词')
-            return
-        else:
+        if len(ss) == 3:
+            try:
+                white = int(ss[2])
+                if white == 1:
+                    init_room(num, uid, user_name, white=True)
+                else:
+                    send_message(uid, '命令格式不正确')
+                    return
+            except ValueError:
+                send_message(uid, '命令格式不正确')
+                return
+
+        if len(ss) == 4:
             good_word = ss[2]
             bad_word = ss[3]
-            init_room(num, uid, user_name, good_word, bad_word)
+            return init_room(num, uid, user_name, good_word, bad_word)
+        if len(ss) == 5:
+            try:
+                good_word = ss[2]
+                bad_word = ss[3]
+                white = int(ss[4])
+                if white == 1:
+                    init_room(num, uid, user_name, good_word, bad_word, True)
+                else:
+                    send_message(uid, '命令格式不正确')
+                    return
+            except ValueError:
+                send_message(uid, '命令格式不正确')
+                return
+        else:
+            send_message(uid, '你输这么多参数干嘛?')
+            return
 
     else:
         init_room(num, uid, user_name)
