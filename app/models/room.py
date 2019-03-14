@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 # @Author: LogicJake
 # @Date:   2019-03-04 13:33:50
-# @Last Modified time: 2019-03-14 20:07:50
+# @Last Modified time: 2019-03-14 20:11:26
 from .. import db
 import time
 
@@ -19,7 +19,7 @@ class Room(db.Model):
     update = db.Column(db.Integer)
     white = db.Column(db.Integer)
 
-    def __init__(self, room_id, num, good_word, bad_word, bad_number, owner_name, owner_id):
+    def __init__(self, room_id, num, good_word, bad_word, bad_number, owner_name, owner_id, white):
         self.room_id = room_id
         self.num = num
         self.good_word = good_word
@@ -27,6 +27,7 @@ class Room(db.Model):
         self.bad_number = bad_number
         self.owner_name = owner_name
         self.owner_id = owner_id
+        self.white = white
 
         now = int(time.time())
         self.update = now
